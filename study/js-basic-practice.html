@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 基础知识练习</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .section h2 {
+            color: #764ba2;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .section p {
+            color: #555;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .practice-box {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #667eea;
+        }
+        input, textarea, select {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            margin: 5px;
+            font-family: 'Courier New', monospace;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .output {
+            background: #1e1e1e;
+            color: #00ff00;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: 'Courier New', monospace;
+            min-height: 40px;
+            white-space: pre-wrap;
+        }
+        .code-hint {
+            background: #e3f2fd;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #1565c0;
+            margin: 10px 0;
+        }
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 JavaScript 基础知识练习</h1>
+
+        <!-- 1. 变量的定义 -->
+        <div class="section">
+            <h2>📦 一、变量的定义</h2>
+            <p>JavaScript 有三种声明变量的方式：<span class="badge">var</span> <span class="badge">let</span> <span class="badge">const</span></p>
+            
+            <div class="practice-box">
+                <h4>练习 1：创建你的第一个变量</h4>
+                <p>输入你的名字和年龄，点击按钮生成变量：</p>
+                <input type="text" id="varName" placeholder="你的名字" value="小明">
+                <input type="number" id="varAge" placeholder="年龄" value="18">
+                <button onclick="practiceVariables()">运行代码</button>
+                <div class="output" id="varOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 2：变量重新赋值</h4>
+                <p>观察 <code>let</code> 和 <code>const</code> 的区别：</p>
+                <button onclick="practiceReassign()">测试 let vs const</button>
+                <div class="output" id="reassignOutput">// 输出区域</div>
+            </div>
+        </div>
+
+        <!-- 2. 变量类型 -->
+        <div class="section">
+            <h2>🔍 二、变量类型</h2>
+            <p>JavaScript 是动态类型语言，主要类型包括：String、Number、Boolean、Undefined、Null、Object、Array、Symbol、BigInt</p>
+            
+            <div class="practice-box">
+                <h4>练习：类型侦探 typeof</h4>
+                <p>选择或输入一个值，查看它的类型：</p>
+                <select id="typeSelect">
+                    <option value='"Hello"'>"Hello" (字符串)</option>
+                    <option value="42">42 (数字)</option>
+                    <option value="true">true (布尔)</option>
+                    <option value="undefined">undefined</option>
+                    <option value="null">null</option>
+                    <option value="[1,2,3]">[1,2,3] (数组)</option>
+                    <option value='{name:"JS"}'>{name:"JS"} (对象)</option>
+                    <option value="Symbol()">Symbol()</option>
+                </select>
+                <button onclick="practiceTypes()">检测类型</button>
+                <div class="output" id="typeOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习：类型转换</h4>
+                <p>输入任意值，体验显式类型转换：</p>
+                <input type="text" id="convertInput" placeholder="输入值，如: 123 或 true" value="123">
+                <button onclick="practiceConversion()">转换类型</button>
+                <div class="output" id="convertOutput">// 输出区域</div>
+            </div>
+        </div>
+
+        <!-- 3. 表达式 -->
+        <div class="section">
+            <h2>🧮 三、表达式</h2>
+            <p>表达式包括：算术表达式、比较表达式、逻辑表达式、赋值表达式、字符串表达式</p>
+            
+            <div class="grid-2">
+                <div class="practice-box">
+                    <h4>算术表达式</h4>
+                    <input type="number" id="num1" value="10" style="width: 80px;">
+                    <select id="operator">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">×</option>
+                        <option value="/">÷</option>
+                        <option value="%">%</option>
+                        <option value="**">^</option>
+                    </select>
+                    <input type="number" id="num2" value="3" style="width: 80px;">
+                    <button onclick="practiceArithmetic()">计算</button>
+                    <div class="output" id="arithOutput" style="min-height: 30px;"></div>
+                </div>
+
+                <div class="practice-box">
+                    <h4>比较与逻辑</h4>
+                    <p>测试比较和逻辑运算符：</p>
+                    <button onclick="practiceCompare()">运行比较示例</button>
+                    <div class="output" id="compareOutput" style="min-height: 30px;"></div>
+                </div>
+            </div>
+
+            <div class="practice-box">
+                <h4>字符串表达式</h4>
+                <input type="text" id="str1" placeholder="字符串1" value="Hello">
+                <input type="text" id="str2" placeholder="字符串2" value="World">
+                <button onclick="practiceStringExpr()">拼接字符串</button>
+                <div class="output" id="stringOutput">// 输出区域</div>
+            </div>
+        </div>
+
+        <!-- 4. 流程控制 -->
+        <div class="section">
+            <h2>🔄 四、流程控制</h2>
+            <p>掌握 if/else、switch、for、while 等控制结构</p>
+            
+            <div class="practice-box">
+                <h4>练习 1：成绩评级系统 (if/else)</h4>
+                <p>输入分数（0-100），查看等级评定：</p>
+                <input type="number" id="score" placeholder="分数" value="85" min="0" max="100">
+                <button onclick="practiceIfElse()">评定等级</button>
+                <div class="output" id="scoreOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 2：九九乘法表 (for 循环)</h4>
+                <p>使用嵌套 for 循环生成九九乘法表：</p>
+                <button onclick="practiceForLoop()">生成乘法表</button>
+                <div class="output" id="loopOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 3：猜数字游戏 (while 循环)</h4>
+                <p>电脑随机生成 1-10 的数字，用 while 循环来"猜测"：</p>
+                <button onclick="practiceWhileLoop()">运行猜数字</button>
+                <div class="output" id="whileOutput">// 输出区域</div>
+            </div>
+        </div>
+
+        <!-- 5. 函数 -->
+        <div class="section">
+            <h2>⚡ 五、函数</h2>
+            <p>函数是 JavaScript 的核心，包括：函数声明、函数表达式、箭头函数、参数、返回值、作用域</p>
+            
+            <div class="practice-box">
+                <h4>练习 1：函数声明 vs 表达式 vs 箭头函数</h4>
+                <p>观察三种定义函数的方式及其效果：</p>
+                <button onclick="practiceFunctionTypes()">运行函数示例</button>
+                <div class="output" id="funcTypeOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 2：计算器函数</h4>
+                <p>输入两个数字，调用函数进行加减乘除：</p>
+                <input type="number" id="fNum1" value="20" style="width: 80px;">
+                <input type="number" id="fNum2" value="4" style="width: 80px;">
+                <button onclick="practiceCalculator()">调用计算器函数</button>
+                <div class="output" id="calcOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 3：闭包与作用域</h4>
+                <p>体验函数作用域和闭包的特性：</p>
+                <button onclick="practiceScope()">运行作用域示例</button>
+                <div class="output" id="scopeOutput">// 输出区域</div>
+            </div>
+
+            <div class="practice-box">
+                <h4>练习 4：自定义函数挑战</h4>
+                <p>在下面写一段 JS 代码并运行（可以使用 console.log 输出）：</p>
+                <textarea id="customCode" rows="5" style="width: 100%;" placeholder="例如：function greet(name) { return '你好，' + name; } console.log(greet('JS'));">function factorial(n) {
+  if (n <= 1) return 1;
+  return n * factorial(n - 1);
+}
+console.log("5! = " + factorial(5));
+console.log("10! = " + factorial(10));</textarea>
+                <button onclick="runCustomCode()">▶ 运行我的代码</button>
+                <div class="output" id="customOutput">// 输出区域</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== 一、变量的定义 ====================
+        function practiceVariables() {
+            let name = document.getElementById('varName').value;
+            let age = parseInt(document.getElementById('varAge').value);
+            const birthYear = new Date().getFullYear() - age;
+            
+            let output = `// 使用 let 声明可变量\n`;
+            output += `let userName = "${name}";  // 类型: ${typeof userName}\n`;
+            output += `let userAge = ${age};      // 类型: ${typeof userAge}\n\n`;
+            output += `// 使用 const 声明常量\n`;
+            output += `const birthYear = ${birthYear}; // 类型: ${typeof birthYear}\n\n`;
+            output += `✅ 变量创建成功！${name} 今年 ${age} 岁，出生年份约为 ${birthYear}。`;
+            
+            document.getElementById('varOutput').textContent = output;
+        }
+
+        function practiceReassign() {
+            let output = `// let 允许重新赋值\n`;
+            let score = 80;
+            output += `let score = ${score};\n`;
+            score = 95;
+            output += `score = ${score};  ✅ 成功！\n\n`;
+            
+            output += `// const 不允许重新赋值\n`;
+            const PI = 3.14159;
+            output += `const PI = ${PI};\n`;
+            try {
+                PI = 3.14;
+                output += `PI = 3.14;  ✅ 竟然成功了？（严格模式下会报错）\n`;
+            } catch (e) {
+                output += `PI = 3.14;  ❌ 报错: ${e.message}\n`;
+            }
+            output += `\n💡 建议: 默认使用 const，需要重新赋值时用 let，避免使用 var。`;
+            
+            document.getElementById('reassignOutput').textContent = output;
+        }
+
+        // ==================== 二、变量类型 ====================
+        function practiceTypes() {
+            let code = document.getElementById('typeSelect').value;
+            let value;
+            try {
+                value = eval(code);
+            } catch (e) {
+                value = "解析错误";
+            }
+            
+            let type = typeof value;
+            let extra = "";
+            if (value === null) type = "null (特殊object)";
+            if (Array.isArray(value)) extra = "，同时 Array.isArray() 返回 true";
+            
+            let output = `值: ${JSON.stringify(value)}\n`;
+            output += `typeof: ${type}${extra}\n`;
+            output += `\n💡 小知识: typeof null === "object" 是 JavaScript 的历史遗留 bug。`;
+            
+            document.getElementById('typeOutput').textContent = output;
+        }
+
+        function practiceConversion() {
+            let input = document.getElementById('convertInput').value;
+            let output = `原始输入: "${input}" (类型: ${typeof input})\n\n`;
+            
+            output += `Number("${input}")     → ${Number(input)} (类型: ${typeof Number(input)})\n`;
+            output += `String(${input})       → "${String(input)}" (类型: ${typeof String(input)})\n`;
+            output += `Boolean("${input}")    → ${Boolean(input)} (类型: ${typeof Boolean(input)})\n`;
+            output += `parseInt("${input}")   → ${parseInt(input)}\n`;
+            output += `parseFloat("${input}") → ${parseFloat(input)}\n`;
+            output += `\n💡 注意: 空字符串转 Boolean 为 false，字符串 "0" 转 Boolean 为 true！`;
+            
+            document.getElementById('convertOutput').textContent = output;
+        }
+
+        // ==================== 三、表达式 ====================
+        function practiceArithmetic() {
+            let a = parseFloat(document.getElementById('num1').value);
+            let b = parseFloat(document.getElementById('num2').value);
+            let op = document.getElementById('operator').value;
+            let result;
+            
+            switch(op) {
+                case '+': result = a + b; break;
+                case '-': result = a - b; break;
+                case '*': result = a * b; break;
+                case '/': result = a / b; break;
+                case '%': result = a % b; break;
+                case '**': result = a ** b; break;
+            }
+            
+            let output = `${a} ${op} ${b} = ${result}\n\n`;
+            output += `额外信息:\n`;
+            output += `a++ = ${a++} (后置递增，先返回再+1)\n`;
+            output += `++a = ${++a} (前置递增，先+1再返回)\n`;
+            output += `a += b → ${a += b}\n`;
+            
+            document.getElementById('arithOutput').textContent = output;
+        }
+
+        function practiceCompare() {
+            let output = `// 比较表达式\n`;
+            output += `5 == "5"   → ${5 == "5"}  (松散相等，类型转换后比较)\n`;
+            output += `5 === "5"  → ${5 === "5"} (严格相等，类型也必须相同)\n`;
+            output += `5 != "5"   → ${5 != "5"}\n`;
+            output += `5 !== "5"  → ${5 !== "5"}\n`;
+            output += `3 > 2      → ${3 > 2}\n`;
+            output += `3 <= 3     → ${3 <= 3}\n\n`;
+            
+            output += `// 逻辑表达式\n`;
+            output += `true && false → ${true && false}\n`;
+            output += `true || false → ${true || false}\n`;
+            output += `!true         → ${!true}\n`;
+            output += `"hello" && "world" → ${"hello" && "world"} (逻辑与返回最后一个真值)\n`;
+            output += `"" || "default"  → ${"" || "default"} (逻辑或返回第一个真值)\n\n`;
+            output += `💡 最佳实践: 始终使用 === 和 !== 进行比较！`;
+            
+            document.getElementById('compareOutput').textContent = output;
+        }
+
+        function practiceStringExpr() {
+            let s1 = document.getElementById('str1').value;
+            let s2 = document.getElementById('str2').value;
+            
+            let output = `// 字符串拼接\n`;
+            output += `"${s1}" + "${s2}" = "${s1 + s2}"\n\n`;
+            output += `// 模板字符串 (推荐)\n`;
+            output += `\`\${s1} \${s2}\` = "${s1} ${s2}"\n\n`;
+            output += `// 字符串长度和索引\n`;
+            output += `"${s1}".length = ${s1.length}\n`;
+            output += `"${s1}"[0] = ${s1[0] || "undefined"}\n`;
+            output += `"${s1}".toUpperCase() = ${s1.toUpperCase()}\n`;
+            output += `"${s1}${s2}".includes("${s1}") = ${(s1+s2).includes(s1)}\n`;
+            
+            document.getElementById('stringOutput').textContent = output;
+        }
+
+        // ==================== 四、流程控制 ====================
+        function practiceIfElse() {
+            let score = parseInt(document.getElementById('score').value);
+            let output = `输入分数: ${score}\n\n`;
+            let grade;
+            
+            if (score < 0 || score > 100) {
+                grade = "无效分数";
+            } else if (score >= 90) {
+                grade = "A (优秀)";
+            } else if (score >= 80) {
+                grade = "B (良好)";
+            } else if (score >= 70) {
+                grade = "C (中等)";
+            } else if (score >= 60) {
+                grade = "D (及格)";
+            } else {
+                grade = "F (不及格)";
+            }
+            
+            output += `if (score >= 90)      → "A"\n`;
+            output += `else if (score >= 80) → "B"\n`;
+            output += `else if (score >= 70) → "C"\n`;
+            output += `else if (score >= 60) → "D"\n`;
+            output += `else                  → "F"\n\n`;
+            output += `✅ 评定结果: ${grade}`;
+            
+            document.getElementById('scoreOutput').textContent = output;
+        }
+
+        function practiceForLoop() {
+            let output = "// 九九乘法表\n";
+            for (let i = 1; i <= 9; i++) {
+                let row = "";
+                for (let j = 1; j <= i; j++) {
+                    row += `${j}×${i}=${i*j}\t`;
+                }
+                output += row + "\n";
+            }
+            output += "\n💡 for (初始化; 条件; 迭代) { ... }\n";
+            output += "💡 break 可跳出循环，continue 可跳过当前迭代。";
+            
+            document.getElementById('loopOutput').textContent = output;
+        }
+
+        function practiceWhileLoop() {
+            let target = Math.floor(Math.random() * 10) + 1;
+            let guess = 1;
+            let attempts = 0;
+            let output = `目标数字: ${target}\n\n`;
+            output += "// while 循环猜数字\n";
+            
+            while (guess <= 10) {
+                attempts++;
+                if (guess === target) {
+                    output += `第 ${attempts} 次猜测: ${guess} → ✅ 猜对了！\n`;
+                    break;
+                } else {
+                    output += `第 ${attempts} 次猜测: ${guess} → ❌ 不对\n`;
+                }
+                guess++;
+            }
+            
+            output += `\n共尝试了 ${attempts} 次。`;
+            document.getElementById('whileOutput').textContent = output;
+        }
+
+        // ==================== 五、函数 ====================
+        function practiceFunctionTypes() {
+            // 函数声明
+            function add(a, b) {
+                return a + b;
+            }
+            
+            // 函数表达式
+            const subtract = function(a, b) {
+                return a - b;
+            };
+            
+            // 箭头函数
+            const multiply = (a, b) => a * b;
+            
+            let output = `// 1. 函数声明 (有提升特性)\n`;
+            output += `function add(a, b) { return a + b; }\n`;
+            output += `add(3, 4) = ${add(3, 4)}\n\n`;
+            
+            output += `// 2. 函数表达式\n`;
+            output += `const subtract = function(a, b) { return a - b; }\n`;
+            output += `subtract(10, 4) = ${subtract(10, 4)}\n\n`;
+            
+            output += `// 3. 箭头函数\n`;
+            output += `const multiply = (a, b) => a * b;\n`;
+            output += `multiply(5, 6) = ${multiply(5, 6)}\n\n`;
+            
+            output += `// 默认参数和剩余参数\n`;
+            function greet(name = "游客", ...hobbies) {
+                return `你好 ${name}，爱好: ${hobbies.join(", ") || "无"}`;
+            }
+            output += `greet("小明", "编程", "音乐") = "${greet("小明", "编程", "音乐")}"\n`;
+            output += `greet() = "${greet()}"\n`;
+            
+            document.getElementById('funcTypeOutput').textContent = output;
+        }
+
+        function practiceCalculator() {
+            let a = parseFloat(document.getElementById('fNum1').value);
+            let b = parseFloat(document.getElementById('fNum2').value);
+            
+            function calculator(x, y, operation) {
+                switch(operation) {
+                    case 'add': return x + y;
+                    case 'subtract': return x - y;
+                    case 'multiply': return x * y;
+                    case 'divide': return y !== 0 ? x / y : '除数不能为0';
+                    default: return '未知操作';
+                }
+            }
+            
+            let output = `输入: a = ${a}, b = ${b}\n\n`;
+            output += `calculator(a, b, 'add')      → ${calculator(a, b, 'add')}\n`;
+            output += `calculator(a, b, 'subtract') → ${calculator(a, b, 'subtract')}\n`;
+            output += `calculator(a, b, 'multiply') → ${calculator(a, b, 'multiply')}\n`;
+            output += `calculator(a, b, 'divide')   → ${calculator(a, b, 'divide')}\n`;
+            
+            document.getElementById('calcOutput').textContent = output;
+        }
+
+        function practiceScope() {
+            let globalVar = "我是全局变量";
+            
+            function outer() {
+                let outerVar = "我是外层变量";
+                
+                function inner() {
+                    let innerVar = "我是内层变量";
+                    return `${globalVar} | ${outerVar} | ${innerVar}`;
+                }
+                
+                return inner();
+            }
+            
+            let output = `// 作用域链演示\n`;
+            output += `全局: "${globalVar}"\n`;
+            output += `外层函数访问结果: "${outer()}"\n\n`;
+            
+            output += `// 闭包演示\n`;
+            function createCounter() {
+                let count = 0;
+                return function() {
+                    count++;
+                    return count;
+                };
+            }
+            const counter = createCounter();
+            output += `counter() = ${counter()}\n`;
+            output += `counter() = ${counter()}\n`;
+            output += `counter() = ${counter()}\n\n`;
+            output += `💡 闭包让内部函数记住了外部函数的变量！`;
+            
+            document.getElementById('scopeOutput').textContent = output;
+        }
+
+        function runCustomCode() {
+            let code = document.getElementById('customCode').value;
+            let output = "// 运行结果:\n";
+            
+            // 捕获 console.log
+            let originalLog = console.log;
+            let logs = [];
+            console.log = function(...args) {
+                logs.push(args.join(" "));
+            };
+            
+            try {
+                eval(code);
+                output += logs.join("\n") || "(无输出)";
+                output += "\n\n✅ 代码执行成功！";
+            } catch (e) {
+                output += `❌ 错误: ${e.message}`;
+            } finally {
+                console.log = originalLog;
+            }
+            
+            document.getElementById('customOutput').textContent = output;
+        }
+    </script>
+</body>
+</html>
